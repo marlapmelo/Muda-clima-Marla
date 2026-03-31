@@ -1,0 +1,52 @@
+<!-- Formulário para envio de artigos -->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
+    <!-- Estilos -->
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <title>Upload de Artigo</title>
+</head>
+<body>
+  <header>
+        <div class="logo-container">
+            <img src="../img/logoclimars.png" alt="Logo ClimArS" class="logo-img">
+            <h2>Muda Clima</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/front-page.html">Gráfico</a></li>
+                <li><a href="#" id="btn-predicao">Previsões Mensais Pneumonia</a></li>
+                <li><a href="#" id="btn-predicao-beta">Previsões Multiplas</a></li>
+                <li><a href="#" id="btn-artigos">Publicações</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+<!-- Conteúdo principal -->
+  <main>
+    <section class="upload-artigo">
+        <h1>Envio de Artigo</h1>
+        <p>Faça o upload do seu artigo em PDF para compartilhar suas descobertas e análises relacionadas ao clima, poluição e saúde respiratória.</p>
+        <div class="upload-form">
+            <form action="/enviar" method="POST" enctype="multipart/form-data">
+                <input type="text" name="titulo" placeholder="Título do Artigo" required>
+                <input type="file" name="pdf" accept=".pdf" required>
+            <button type="submit">Enviar Artigo</button>
+            </form>
+        </div>   
+    </section>
+  </main>
+
+  <footer>
+        <p>© 2025 CNPQ - Projeto "Associação entre as variáveis climáticas e as internações por doenças respiratórias" - Muda Clima</p>
+    </footer>
+</body>
+</html>
+
