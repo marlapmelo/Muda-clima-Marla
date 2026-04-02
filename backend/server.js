@@ -324,30 +324,53 @@ Usuário: ${message}
     }
 });
 
-//app.listen(3000, '0.0.0.0', () => console.log('API rodando na porta 3000'));
+// app.listen(3000, '0.0.0.0', () => console.log('API rodando na porta 3000'));
 
 
 // =======================================================
-// UPLOAD DE PDF E ARMAZENAMENTO NO POSTGRESQL
+// TELA DE LOGIN E SESSÃO DE USUÁRIO
 // =======================================================
+//const express = require('express');
+//const app = express();
 
-const express = require('express');
-const multer  = require('multer');
-const { Pool } = require('pg');
-const app = express();
+// 1. TRADUTORES (Middleware) - Sem isso, o req.body fica vazio e dá erro
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// 1. Configuração de onde salvar o PDF
-const upload = multer({ dest: 'uploads/' }); 
+// 2. ARQUIVOS ESTÁTICOS (Para o Nginx ou Node achar seu HTML)
+app.use(express.static('frontend')); 
 
-// 3. Rota que recebe o arquivo do formulário
-app.post('/enviar', upload.single('pdf'), async (req, res) => {
-    const titulo = req.body.titulo;
-    const nomeArquivo = req.config.file.filename; // Nome que o Multer gerou
+// 3. A ROTA DE LOGIN
+app.post('/login', (req, res) => {
+    console.log("Recebi um pedido de login:", req.body); // Isso ajuda a debugar no terminal
+    const { username, password } = req.body;
 
-    await pool.query('INSERT INTO artigos (titulo, nome_arquivo) VALUES ($1, $2)', [titulo, nomeArquivo]);
-    
-    res.send('Artigo enviado com sucesso!');
+    if (username === 'admin' && password === '1234') {
+        res.redirect('/uploads.html'); 
+    } else {
+        res.send('Usuário ou senha incorretos.');
+    }
 });
 
+
+// 1. TRADUTORES (Middleware) - Sem isso, o req.body fica vazio e dá erro
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// 2. ARQUIVOS ESTÁTICOS (Para o Nginx ou Node achar seu HTML)
+app.use(express.static('frontend')); 
+
+// 3. A ROTA DE LOGIN
+app.post('/login', (req, res) => {
+    console.log("Recebi um pedido de login:", req.body); // Isso ajuda a debugar no terminal
+    const { username, password } = req.body;
+
+    if (username === 'admin' && password === '1234') {
+        res.redirect('/uploads.html'); 
+    } else {
+        res.send('Usuário ou senha incorretos.');
+    }
+});
+
+
 app.listen(3000, '0.0.0.0', () => console.log('API rodando na porta 3000'));
-//app.listen(3000, () => console.log('Servidor rodando na porta 3000'));

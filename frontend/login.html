@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/footer.css">
-    <title>Upload de Artigo</title>
+    <title>Acessar área do autor</title>
 </head>
 <body>
   <header>
@@ -25,34 +25,27 @@
                 <li><a href="#" id="btn-predicao-beta">Previsões Multiplas</a></li>
                 <li><a href="/artigos.html">Publicações</a></li>
                 <li><a href="/login.html">Login</a></li>
-            
-
             </ul>
         </nav>
     </header>
 
 
-
-
-<!-- Conteúdo principal -->
- <main>
-    <section class="upload-artigo">
-        <h1>Envio de Artigo</h1>
-        <p>Faça o upload do seu artigo em PDF para compartilhar suas descobertas e análises relacionadas ao clima, poluição e saúde respiratória.</p>
-        <div class="upload-form">
-            <form action="/enviar" method="POST" enctype="multipart/form-data">
-                <p><input type="text" name="titulo" placeholder="Título do Artigo" required></p>
-                <p><input type="file" name="pdf" accept=".pdf" required></p>
-                <label>Data de Publicação:</label>
-                <p><input type="date" name="data_publicacao" required></p>
-            <button type="submit">Enviar Artigo</button>
-            </form>
-        </div>   
-    </section>
-    </main> 
+<!-- login -->
+<main>
+<section class="login-section">
+    <h1>Login</h1>
+    <p>Faça login para envio de artigos</p>
+    <div class="login-form">
+        <form action="/login" method="POST">
+            <p><input type="text" name="username" placeholder="Nome de usuário" required></p>
+            <p><input type="password" name="password" placeholder="Senha" required></p>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</section>
+</main>
   <footer>
         <p>© 2025 CNPQ - Projeto "Associação entre as variáveis climáticas e as internações por doenças respiratórias" - Muda Clima</p>
     </footer>
 </body>
 </html>
-
