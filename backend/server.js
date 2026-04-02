@@ -330,14 +330,13 @@ Usuário: ${message}
 // =======================================================
 // TELA DE LOGIN E SESSÃO DE USUÁRIO
 // =======================================================
-//const express = require('express');
-//const app = express();
+
 
 // 1. TRADUTORES (Middleware) - Sem isso, o req.body fica vazio e dá erro
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 2. ARQUIVOS ESTÁTICOS (Para o Nginx ou Node achar seu HTML)
+// 2. ARQUIVOS ESTÁTICOS (Para o Nginx ou Node achar o HTML)
 app.use(express.static('frontend')); 
 
 // 3. A ROTA DE LOGIN
@@ -352,25 +351,12 @@ app.post('/login', (req, res) => {
     }
 });
 
+// =======================================================
+// Receber artigos enviados pelo formulário
+// =======================================================
 
-// 1. TRADUTORES (Middleware) - Sem isso, o req.body fica vazio e dá erro
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+//const multer = require('multer');
 
-// 2. ARQUIVOS ESTÁTICOS (Para o Nginx ou Node achar seu HTML)
-app.use(express.static('frontend')); 
-
-// 3. A ROTA DE LOGIN
-app.post('/login', (req, res) => {
-    console.log("Recebi um pedido de login:", req.body); // Isso ajuda a debugar no terminal
-    const { username, password } = req.body;
-
-    if (username === 'admin' && password === '1234') {
-        res.redirect('/uploads.html'); 
-    } else {
-        res.send('Usuário ou senha incorretos.');
-    }
-});
 
 
 app.listen(3000, '0.0.0.0', () => console.log('API rodando na porta 3000'));
