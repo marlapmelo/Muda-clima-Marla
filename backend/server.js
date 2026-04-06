@@ -6,6 +6,26 @@ const app = express();
 const { Pool } = require('pg');
 const path = require('path');
 
+//===============================
+// Configuração do multer para upload de arquivos
+const multer = require('multer');
+
+// Configuração de onde o arquivo será salvo e com qual nome
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/'); // Pasta onde dos PDFs
+    },
+    filename: (req, file, cb) => {
+        // Gera um nome único: data-nomeoriginal.pdf
+        const uniqueName = Date.now() + '-' + file.originalname;
+        cb(null, uniqueName);
+    }
+});
+
+const upload = multer({ storage: storage });
+//===============================
+
+
 const createMunicipiosRouter = require('./routes/predicao.js');
 const redirect_home = require('./routes/home.js');
 
@@ -390,7 +410,38 @@ app.post('/login', async (req, res) => {
 // =======================================================
 
 //const multer = require('multer');
+app.post('/enviar', upload.single('pdf'), async (req, res) => {
+    try {
+        // 1. Pegar os dados do texto (do req.body)
+        const { titulo, data_publicacao } = req.body;
+        
+        // 2. Pegar os dados do arquivo (do req.file)
+        if (!req.file) {
+            return res.status(400).send('Nenhum arquivo foi enviado.');
+        }
+        const nomeDoArquivoNoServidor = req.file.filename;
 
+        // 3. Salvar no PostgreSQL (db_projeto_artigos)
+        const query = `
+            INSERT INTO artigos (titulo, nome_arquivo, data_publicacao) 
+            VALUES ($1, $2, $3)
+        `;
+        const valores = [titulo, nomeDoArquivoNoServidor, data_publicacao];
+        
+        await pool.query(query, valores);
+
+        // 4. Resposta de sucesso
+        res.send(`
+            <h2>Artigo enviado com sucesso!</h2>
+            <p>Título: ${titulo}</p>
+            <a href="/artigos.html">Voltar para o Dashboard</a>
+        `);
+
+    } catch (err) {
+        console.error("Erro no upload:", err);
+        res.status(500).send("Erro interno ao processar o artigo.");
+    }
+});
 
 
 app.listen(3000, '0.0.0.0', () => console.log('API rodando na porta 3000'));
