@@ -23,6 +23,18 @@ const pool = new Pool({
     port: 5432,
 })
 
+//===============================
+// Conexão 2 com o banco de dados artigos
+const poolArtigos = new Pool({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'artigos',
+    password: 'admin',
+    port: 5432,
+});
+//===============================
+
+
 app.use(cors());
 app.use(express.json());
 
@@ -340,14 +352,36 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('frontend')); 
 
 // 3. A ROTA DE LOGIN
-app.post('/login', (req, res) => {
-    console.log("Recebi um pedido de login:", req.body); // Isso ajuda a debugar no terminal
+
+const session = require('express-session');
+
+app.use(session({
+    secret: 'chave',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
-    if (username === 'admin' && password === '1234') {
-        res.redirect('/uploads.html'); 
-    } else {
-        res.send('Usuário ou senha incorretos.');
+    try {
+        // Busca o usuário no banco de dados
+        const query = 'SELECT * FROM usuarios WHERE username = $1 AND password = $2';
+        const result = await poolArtigos.query(query, [username, password]);
+
+        if (result.rows.length > 0) {
+          //guarda o ID e o Nome na sessão
+            req.session.usuarioLogado = true;
+            req.session.usuarioId = result.rows.id;
+            req.session.nomeUsuario = result.rows.nome_completo;
+
+            res.redirect('/uploads.html'); 
+        } else {
+            res.send('Usuário ou senha incorretos.');
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Erro interno no servidor' + err.message);
     }
 });
 

@@ -1,0 +1,20 @@
+\\ criar banco de dados artigos
+
+
+-- Tabela de Usuários
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    username TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    nome_completo TEXT
+);
+
+-- Tabela de Artigos
+CREATE TABLE artigos (
+    id SERIAL PRIMARY KEY,
+    titulo TEXT NOT NULL,
+    nome_arquivo TEXT NOT NULL,
+    data_publicacao DATE,
+    tema TEXT,
+    usuario_id INTEGER REFERENCES usuarios(id)
+);
