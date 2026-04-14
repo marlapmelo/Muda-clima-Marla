@@ -41,12 +41,16 @@
         <p>Faça o upload do seu artigo em PDF para compartilhar suas descobertas e análises relacionadas ao clima, poluição e saúde respiratória.</p>
         <div class="upload-form">
             <form action="/enviar" method="POST" enctype="multipart/form-data">
+                <div>Título do Trabalho
                 <p><input type="text" name="titulo" placeholder="Título do Artigo" required></p>
+                </div>
                 <p><input type="file" name="pdf" accept=".pdf" required></p>
                 <label>Data de Publicação:</label>
                 <p><input type="date" name="data_publicacao" required></p>
+                <div>Palavras-chaves
                 <p><input type="text" name="tema" placeholder="Tema do Artigo" required></p>
-            <button type="submit">Enviar Artigo</button>
+                 </div>   
+                <button type="submit">Enviar Artigo</button>
             </form>
         </div>   
     </section>

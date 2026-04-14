@@ -33,13 +33,17 @@
 <!-- login -->
 <main>
 <section class="login-section">
-    <h1>Login</h1>
-    <p>Faça login para envio de artigos</p>
+    <h1>Bem-vindo de volta</h1>
+    <p>Faça login para acessar o sistema ClimArS</p>
     <div class="login-form">
         <form action="/login" method="POST">
-            <p><input type="text" name="username" placeholder="Nome de usuário" required></p>
+            <div>Email Institucional
+            <p><input type="text" name="username" placeholder="Email Institucional" required></p>
+            </div>
+            <div>Senha
             <p><input type="password" name="password" placeholder="Senha" required></p>
-            <button type="submit">Entrar</button>
+            </div>
+            <button type="submit">Entrar no Sistema</button>
         </form>
     </div>
 </section>

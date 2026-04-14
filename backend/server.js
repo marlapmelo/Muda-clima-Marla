@@ -23,6 +23,19 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+
+const session = require('express-session');
+
+app.use(session({
+    secret: 'chave',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }
+}));
+
+
+app.use(express.urlencoded({ extended: true }));
 //===============================
 
 
@@ -364,22 +377,10 @@ Usuário: ${message}
 // =======================================================
 
 
-// 1. TRADUTORES (Middleware) - Sem isso, o req.body fica vazio e dá erro
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// 2. ARQUIVOS ESTÁTICOS (Para o Nginx ou Node achar o HTML)
+// ARQUIVOS ESTÁTICOS (Para o Nginx ou Node achar o HTML)
 app.use(express.static('frontend')); 
 
-// 3. A ROTA DE LOGIN
-
-const session = require('express-session');
-
-app.use(session({
-    secret: 'chave',
-    resave: false,
-    saveUninitialized: false
-}));
+//ROTA DE LOGIN
 
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
@@ -390,9 +391,9 @@ app.post('/login', async (req, res) => {
         const result = await poolArtigos.query(query, [username, password]);
 
         if (result.rows.length > 0) {
-          //guarda o ID e o Nome na sessão
             req.session.usuarioLogado = true;
-            req.session.usuarioId = result.rows.id;
+            //guarda o ID e o Nome na sessão
+            req.session.usuarioId = result.rows.id; 
             req.session.nomeUsuario = result.rows.nome_completo;
 
             res.redirect('/uploads.html'); 
@@ -409,37 +410,40 @@ app.post('/login', async (req, res) => {
 // Receber artigos enviados pelo formulário
 // =======================================================
 
-//const multer = require('multer');
 app.post('/enviar', upload.single('pdf'), async (req, res) => {
+    console.log("Sessão atual:", req.session);
+    const usuario_id = req.session.usuarioId;
     try {
-        // 1. Pegar os dados do texto (do req.body)
-        const { titulo, data_publicacao } = req.body;
+        // 1. Pegando os dados do formulário (req.body)
+        const { titulo, data_publicacao, tema } = req.body;
         
-        // 2. Pegar os dados do arquivo (do req.file)
-        if (!req.file) {
-            return res.status(400).send('Nenhum arquivo foi enviado.');
+        // 2. Pegando o nome do arquivo salvo pelo Multer
+        const nome_arquivo = req.file.filename;
+
+        // 3. Pegando o ID do usuário que está logado (da sessão)
+        const usuario_id = req.session.usuarioId; 
+
+        // O Postgres vai dar erro se tentar inserir 'undefined'.
+        if (!usuario_id) {
+            return res.status(401).send("Você precisa estar logado para enviar artigos.");
         }
-        const nomeDoArquivoNoServidor = req.file.filename;
 
-        // 3. Salvar no PostgreSQL (db_projeto_artigos)
+        // 4. A Query no Postgres
         const query = `
-            INSERT INTO artigos (titulo, nome_arquivo, data_publicacao) 
-            VALUES ($1, $2, $3)
+            INSERT INTO artigos (titulo, nome_arquivo, data_publicacao, tema, usuario_id) 
+            VALUES ($1, $2, $3, $4, $5)
         `;
-        const valores = [titulo, nomeDoArquivoNoServidor, data_publicacao];
         
-        await pool.query(query, valores);
+        const valores = [titulo, nome_arquivo, data_publicacao, tema, usuario_id];
 
-        // 4. Resposta de sucesso
-        res.send(`
-            <h2>Artigo enviado com sucesso!</h2>
-            <p>Título: ${titulo}</p>
-            <a href="/artigos.html">Voltar para o Dashboard</a>
-        `);
+        await poolArtigos.query(query, valores);
+
+        res.send('<h1>Sucesso!</h1><p>Artigo salvo no banco. <a href="/artigos.html">Ver lista</a></p>');
 
     } catch (err) {
-        console.error("Erro no upload:", err);
-        res.status(500).send("Erro interno ao processar o artigo.");
+
+        console.error("Erro detalhado no banco:", err.message);
+        res.status(500).send("Erro ao salvar no banco: " + err.message);
     }
 });
 
