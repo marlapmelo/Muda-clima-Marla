@@ -6,39 +6,6 @@ const app = express();
 const { Pool } = require('pg');
 const path = require('path');
 
-//===============================
-// Configuração do multer para upload de arquivos
-const multer = require('multer');
-
-// Configuração de onde o arquivo será salvo e com qual nome
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Pasta onde dos PDFs
-    },
-    filename: (req, file, cb) => {
-        // Gera um nome único: data-nomeoriginal.pdf
-        const uniqueName = Date.now() + '-' + file.originalname;
-        cb(null, uniqueName);
-    }
-});
-
-const upload = multer({ storage: storage });
-
-
-const session = require('express-session');
-
-app.use(session({
-    secret: 'chave',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false }
-}));
-
-
-app.use(express.urlencoded({ extended: true }));
-//===============================
-
-
 const createMunicipiosRouter = require('./routes/predicao.js');
 const redirect_home = require('./routes/home.js');
 
@@ -55,18 +22,6 @@ const pool = new Pool({
     password: 'admin',
     port: 5432,
 })
-
-//===============================
-// Conexão 2 com o banco de dados artigos
-const poolArtigos = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'artigos',
-    password: 'admin',
-    port: 5432,
-});
-//===============================
-
 
 app.use(cors());
 app.use(express.json());
@@ -368,84 +323,5 @@ Usuário: ${message}
         res.status(500).json({ reply: "Erro no servidor do chat." });
     }
 });
-
-// app.listen(3000, '0.0.0.0', () => console.log('API rodando na porta 3000'));
-
-
-// =======================================================
-// TELA DE LOGIN E SESSÃO DE USUÁRIO
-// =======================================================
-
-
-// ARQUIVOS ESTÁTICOS (Para o Nginx ou Node achar o HTML)
-app.use(express.static('frontend')); 
-
-//ROTA DE LOGIN
-
-app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-
-    try {
-        // Busca o usuário no banco de dados
-        const query = 'SELECT * FROM usuarios WHERE username = $1 AND password = $2';
-        const result = await poolArtigos.query(query, [username, password]);
-
-        if (result.rows.length > 0) {
-            req.session.usuarioLogado = true;
-            //guarda o ID e o Nome na sessão
-            req.session.usuarioId = result.rows.id; 
-            req.session.nomeUsuario = result.rows.nome_completo;
-
-            res.redirect('/uploads.html'); 
-        } else {
-            res.send('Usuário ou senha incorretos.');
-        }
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Erro interno no servidor' + err.message);
-    }
-});
-
-// =======================================================
-// Receber artigos enviados pelo formulário
-// =======================================================
-
-app.post('/enviar', upload.single('pdf'), async (req, res) => {
-    console.log("Sessão atual:", req.session);
-    const usuario_id = req.session.usuarioId;
-    try {
-        // 1. Pegando os dados do formulário (req.body)
-        const { titulo, data_publicacao, tema } = req.body;
-        
-        // 2. Pegando o nome do arquivo salvo pelo Multer
-        const nome_arquivo = req.file.filename;
-
-        // 3. Pegando o ID do usuário que está logado (da sessão)
-        const usuario_id = req.session.usuarioId; 
-
-        // O Postgres vai dar erro se tentar inserir 'undefined'.
-        if (!usuario_id) {
-            return res.status(401).send("Você precisa estar logado para enviar artigos.");
-        }
-
-        // 4. A Query no Postgres
-        const query = `
-            INSERT INTO artigos (titulo, nome_arquivo, data_publicacao, tema, usuario_id) 
-            VALUES ($1, $2, $3, $4, $5)
-        `;
-        
-        const valores = [titulo, nome_arquivo, data_publicacao, tema, usuario_id];
-
-        await poolArtigos.query(query, valores);
-
-        res.send('<h1>Sucesso!</h1><p>Artigo salvo no banco. <a href="/artigos.html">Ver lista</a></p>');
-
-    } catch (err) {
-
-        console.error("Erro detalhado no banco:", err.message);
-        res.status(500).send("Erro ao salvar no banco: " + err.message);
-    }
-});
-
 
 app.listen(3000, '0.0.0.0', () => console.log('API rodando na porta 3000'));
