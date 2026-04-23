@@ -1,0 +1,68 @@
+@article{atmos16091052,
+AUTHOR = {Bonifácio, Alicia da Silva and Tavella, Ronan Adler and Brum, Rodrigo de Lima and Silveira, Gustavo de Oliveira and Fernandes, Ronabson Cardoso and Scursone, Gabriel Fuscald and Machado, Ricardo Arend and Adamatti, Diana Francisca and da Silva Júnior, Flavio Manoel Rodrigues},
+TITLE = {Evaluating Machine Learning Models for Particulate Matter Prediction Under Climate Change Scenarios in Brazilian Capitals},
+JOURNAL = {Atmosphere},
+VOLUME = {16},
+YEAR = {2025},
+NUMBER = {9},
+ARTICLE-NUMBER = {1052},
+URL = {https://www.mdpi.com/2073-4433/16/9/1052},
+ISSN = {2073-4433},
+ABSTRACT = {Air pollution, particularly particulate matter (PM1, PM2.5, and PM10), poses a significant environmental health risk globally. This study evaluates the predictive performance of three machine learning algorithms, Support Vector Machine (SVM), K-Nearest Neighbors (KNN), and Random Forest (RF), for forecasting particulate matter concentrations in four Brazilian cities (Porto Alegre, Recife, Goiânia, and Belém), which share similar demographic and urbanization characteristics but differ in geographic and climatic conditions. Using data from the Copernicus Atmosphere Monitoring Service, daily concentrations of PM1, PM2.5, and PM10 were modeled based on meteorological variables, including air temperature, relative humidity, wind speed, atmospheric pressure, and accumulated precipitation. The models were tested under two climate change scenarios (+2 °C and +4 °C temperature increases). The results indicate that RF consistently outperformed the other models, achieving low RMSE values, around 0.3 µg/m3, across all cities, regardless of their geographic and climatic differences. KNN showed stable performance under moderate temperature increases (+2 °C) but exhibited higher errors under more extreme warming, while SVM demonstrated higher sensitivity to temperature changes, leading to greater variability in bivariate contexts. However, in multivariate contexts, SVM adjusted better, improving its predictive performance by accounting for the combined influence of multiple meteorological variables. These findings underscore the importance of selecting suitable machine learning models, with RF proving to be the most robust approach for particulate matter prediction across diverse environmental contexts. This study contributes valuable insights for the development of region-specific air quality management strategies in the face of climate change.},
+DOI = {10.3390/atmos16091052},
+note={Disponível em: {\url{https://www.mdpi.com/2073-4433/16/9/1052}} Publicado em:  5 September 2025.},
+Keywords= air pollution; air quality; Brazil; climate change; machine learning; meteorological variables; particulate matter; predictive modeling
+}
+
+@article{cli13040071,
+AUTHOR = {Silveira, Gustavo de Oliveira and Azevedo, Gabriella Mello Gomes Vieira de and Tavella, Ronan Adler and Ramires, Paula Florencio and Brum, Rodrigo de Lima and Bonifácio, Alicia da Silva and Machado, Ricardo Arend and Brum, Letícia Willrich and Buffarini, Romina and Adamatti, Diana Francisca and da Silva Júnior, Flavio Manoel Rodrigues},
+TITLE = {A Pilot Study with Low-Cost Sensors: Seasonal Variation of Particulate Matter Ratios and Their Relationship with Meteorological Conditions in Rio Grande, Brazil},
+JOURNAL = {Climate},
+VOLUME = {13},
+YEAR = {2025},
+NUMBER = {4},
+ARTICLE-NUMBER = {71},
+URL = {https://www.mdpi.com/2225-1154/13/4/71},
+ISSN = {2225-1154},
+ABSTRACT = {(1) Background: This study investigated seasonal variations in particulate matter (PM) ratios (PM1/PM2.5, PM2.5/PM10, and PM1/PM10) and their relationship with the meteorological conditions in Rio Grande, Brazil. (2) Methods: PM1, PM2.5, and PM10 levels were collected using low-cost Gaia Air Quality Monitors, which measured PM concentrations at high temporal resolution. Meteorological variables, including atmospheric pressure, temperature, relative humidity, wind speed, and precipitation, were obtained from the National Institute of Meteorology (INMET). The data were analyzed through multiple linear regression to assess the influence of meteorological factors on PM ratios. (3) Results: The results show that the highest PM ratios occurred in winter, indicating a predominance of fine and ultrafine particles, while the lowest ratios were observed in spring and summer. Multiple linear regression analysis identified atmospheric pressure, wind speed, and maximum temperature as the key drivers of PM distribution. (4) Conclusions: This study highlights the importance of continuous monitoring of PM ratios, particularly PM1, which remains underexplored in Brazil. The findings underscore the need for targeted air quality policies emphasizing seasonal mitigation strategies and improved pollution control to minimize the health risks associated with fine and ultrafine PM exposure.},
+DOI = {10.3390/cli13040071},
+note={Disponível em: {\url{https://www.mdpi.com/2225-1154/13/4/71}} Publicado em:  30 March 2025.},
+Keywords= particulate matter; air pollution; seasonality; meteorological influences; air quality monitoring
+}
+
+
+
+@Article{atmos16040363,
+AUTHOR = {Tavella, Ronan Adler and das Neves, Daniele Feijó and Silveira, Gustavo de Oliveira and Vieira de Azevedo, Gabriella Mello Gomes and Brum, Rodrigo de Lima and Bonifácio, Alicia da Silva and Machado, Ricardo Arend and Brum, Letícia Willrich and Buffarini, Romina and Adamatti, Diana Francisca and da Silva Júnior, Flavio Manoel Rodrigues},
+TITLE = {The Relationship Between Surface Meteorological Variables and Air Pollutants in Simulated Temperature Increase Scenarios in a Medium-Sized Industrial City},
+JOURNAL = {Atmosphere},
+VOLUME = {16},
+YEAR = {2025},
+NUMBER = {4},
+ARTICLE-NUMBER = {363},
+URL = {https://www.mdpi.com/2073-4433/16/4/363},
+ISSN = {2073-4433},
+ABSTRACT = {This study investigated the relationship between surface meteorological variables and the levels of surface air pollutants (O3, PM10, and PM2.5) in scenarios of simulated temperature increases in Rio Grande, a medium-sized Brazilian city with strong industrial influence. This study utilized five years of daily meteorological data (from 1 January 2019 to 31 December 2023) to model atmospheric conditions and two years of daily air pollutant data (from 21 December 2021 to 20 December 2023) to simulate how pollutant levels would respond to annual temperature increases of 1 °C and 2 °C, employing a Support Vector Machine, a supervised machine learning algorithm. Predictive models were developed for both annual averages and seasonal variations. The predictive analysis results indicated that, when considering annual averages, pollutant concentrations showed a decreasing trend as temperatures increased. This same pattern was observed in seasonal scenarios, except during summer, when O3 levels increased with the simulated temperature rise. The greatest seasonal reduction in O3 occurred in winter (decreasing by 10.33% and 12.32% under 1 °C and 2 °C warming scenarios, respectively), while for PM10 and PM2.5, the most significant reductions were observed in spring. The lack of a correlation between temperature and pollutant levels, along with their relationship with other meteorological variables, explains the observed pattern in Rio Grande. This research provides important contributions to the understanding of the interactions between climate change, air pollution, and meteorological factors in similar contexts.},
+DOI = {10.3390/atmos16040363},
+note={Disponível em: {\url{https://www.mdpi.com/2073-4433/16/4/363}} Publicado em:  24 March 2025.},
+Keywords= climate change; air quality; particulate matter; ozone; meteorological variables
+}
+
+
+@Article{atmos16030270,
+AUTHOR = {Alves Laucas e Myrrha, Luiz Henrique and Loukili, Yasmin Fawzia Cardoso and Silveira, Gustavo de Oliveira and Tavella, Ronan Adler and Bonifácio, Alicia da Silva and Brum, Rodrigo de Lima and Pereira, Natália and da Silva Júnior, Flavio Manoel Rodrigues},
+TITLE = {Health and Economic Benefits of Accelerating the PM10 Interim Targets in Brazil’s New Air Quality Resolution: A Case Study in Southern Brazil},
+JOURNAL = {Atmosphere},
+VOLUME = {16},
+YEAR = {2025},
+NUMBER = {3},
+ARTICLE-NUMBER = {270},
+URL = {https://www.mdpi.com/2073-4433/16/3/270},
+ISSN = {2073-4433},
+ABSTRACT = {Air pollution, particularly from coarse particulate matter (PM10), is a major public health concern, significantly contributing to respiratory and cardiovascular diseases, especially among vulnerable populations. In 2024, Brazil introduced a new air quality resolution (CONAMA Resolution No. 506/2024), aligning its ultimate goal with the World Health Organization’s 2021 guidelines while establishing specific timelines for the interim targets. However, these interim targets, set for 2025, 2033, and 2044, along with the absence of a deadline for the final target of 15 µg/m3, raise concerns about their adequacy in addressing the urgent health impacts of air pollution. This study evaluates the economic and public health benefits of accelerating these targets in the city of Rio Grande, a region characterized by an industrial and port-driven economy and an aging population particularly vulnerable to air pollution. Using health impact assessments, economic cost analyses, and mortality estimates, we modeled three scenarios with PM10 concentration limits of 30 µg/m3, 20 µg/m3, and 15 µg/m3, corresponding to the resolution’s 2033 and 2044 goals and the undated final target. Our findings indicate that achieving the 15 µg/m3 target by 2025 could prevent 2568 respiratory hospitalizations, 1551 cardiac hospitalizations, and 1128 air pollution-related deaths in Rio Grande, resulting in approximately BRL 7.3 million in healthcare savings. When extrapolated to cities with similar pollution profiles across Brazil, these results suggest substantial potential for reducing the health burdens and economic costs nationwide. This study underscores the urgent need to establish more ambitious timelines in Brazil’s air quality policies to maximize public health benefits and mitigate the economic impacts of air pollution.},
+DOI = {10.3390/atmos16030270},
+note={Disponível em: {\url{https://www.mdpi.com/2073-4433/16/3/270}} Publicado em:  25 February 2025.},
+Keywords= air pollution; CONAMA; economic cost analysis; environmental policy; health impact assessment; particulate matter; public health
+}
+
+

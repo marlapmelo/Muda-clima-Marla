@@ -19,7 +19,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js"
+    "dev": "nodemon backend/server.js",
+    "upload-service": "node backend/upload-service.js",
+    "upload-service:dev": "nodemon backend/upload-service.js",
+    "dev:all": "concurrently \"npm run dev\" \"npm run upload-service:dev\""
   },
   "repository": {
     "type": "git",
