@@ -1,4 +1,4 @@
-process.env.PATH += ":/usr/bin:/usr/local/bin";
+// process.env.PATH += ":/usr/bin:/usr/local/bin";
 
 const express = require('express');
 const cors = require('cors');
@@ -8,6 +8,9 @@ const path = require('path');
 
 const createMunicipiosRouter = require('./routes/predicao.js');
 const redirect_home = require('./routes/home.js');
+
+// Importa o roteador de cadastro
+const cadastroRouter = require('./routes/cadastro.js');
 
 //Dependências para o chatbot ===
 const fs = require('fs');
@@ -32,6 +35,8 @@ const homeRouter = redirect_home();
 app.use(municipiosRouter);
 app.use(homeRouter);
 
+// Rotas do cadastro. 
+app.use(cadastroRouter);
 
 // Rota para obter todas as UFs
 app.get('/ufs', async (req, res) => {
