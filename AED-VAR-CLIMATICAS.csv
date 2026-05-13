@@ -1,0 +1,16 @@
+Variável climática,Mínimo,Máximo ,Média,Desvio Padrão,Total de registros
+Direção do vento,0,3.600000   ,1.337416,1.035353,4.488188
+Insolação,0,6.500000  ,4.233240,3.113729,1.857996
+Número dias de chuva*,0,1.000000  ,2.437760,4.293592,5.126182 
+Precipitacao,0,4.146000,3.477222,1.026313,5.126182
+Pressão atmosferica,0,1.111200,1.009485,6.552440,4.121026
+Radiacao solar,0,4.426500,1.502763,1.599684,2.573572
+Temperatura do ar,-4,4.180000,2.374890,4.287723,4.545981
+Temperatura do ponto de orvalho,-1,4.420000,1.788723,4.558485,4.433240
+Temperatura maxima,-2,4.500000,2.687455,5.403897,4.716655
+Temperatura minima,-9,4.290000,2.126878,4.688222,4.740061
+Umidade relativa,0,1.000000,7.233350,1.433273,4.536693
+Velocidade do vento,0,9.700000,1.926533,1.310128,4.414360
+Velocidade de rajada,0,4.000000,3.944253,2.248828,4.422228
+,,,,,
+Número dias de chuva substituir por choveu (1) ou não choveu (0),,,,,
