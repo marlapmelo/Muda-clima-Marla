@@ -98,19 +98,19 @@
           <fieldset>
             <legend>Variáveis Climáticas</legend>
 
-            <div class="form-group"><label for="Direcao_vento">Direção do vento</label><input type="number" id="Direcao_vento" name="Direcao_vento" step="any" required></div>
-            <div class="form-group"><label for="Insolação">Insolação</label><input type="number" id="Insolação" name="Insolação" step="any" required></div>
-            <div class="form-group"><label for="num_dias_chuva">Número de dias de chuva</label><input type="number" id="num_dias_chuva" name="num_dias_chuva" step="any" required></div>
-            <div class="form-group"><label for="Precipitacao">Precipitação</label><input type="number" id="Precipitacao" name="Precipitacao" step="any" required></div>
-            <div class="form-group"><label for="Pressao_atmosferica">Pressão atmosférica</label><input type="number" id="Pressao_atmosferica" name="Pressao_atmosferica" step="any" required></div>
-            <div class="form-group"><label for="Radiacao_solar">Radiação solar</label><input type="number" id="Radiacao_solar" name="Radiacao_solar" step="any" required></div>
-            <div class="form-group"><label for="Temperatura_ar">Temperatura do ar</label><input type="number" id="Temperatura_ar" name="Temperatura_ar" step="any" required></div>
-            <div class="form-group"><label for="Temperatura_ponto_orvalho">Temperatura de ponto de orvalho</label><input type="number" id="Temperatura_ponto_orvalho" name="Temperatura_ponto_orvalho" step="any" required></div>
-            <div class="form-group"><label for="Temperatura_maxima">Temperatura máxima (°C)</label><input type="number" id="Temperatura_maxima" name="Temperatura_maxima" step="any" required></div>
-            <div class="form-group"><label for="Temperatura_minima">Temperatura mínima (°C)</label><input type="number" id="Temperatura_minima" name="Temperatura_minima" step="any" required></div>
-            <div class="form-group"><label for="Umidade_relativa">Umidade relativa (%)</label><input type="number" id="Umidade_relativa" name="Umidade_relativa" step="any" required></div>
-            <div class="form-group"><label for="Velocidade_vento">Velocidade do vento</label><input type="number" id="Velocidade_vento" name="Velocidade_vento" step="any" required></div>
-            <div class="form-group"><label for="Velocidade_rajada">Velocidade de rajada</label><input type="number" id="Velocidade_rajada" name="Velocidade_rajada" step="any" required></div>
+            <div class="form-group"><label for="Direcao_vento">Direção do vento (Graus (°)) </label><input type="number" id="Direcao_vento" placeholder="Exemplo.: 270.5" "name="Direcao_vento" step="any" required value_max="360" value_min="0"></div>
+            <div class="form-group"><label for="Insolação">Insolação (Horas(h)) </label><input type="number" id="Insolação" placeholder="Ex.:6" name="Insolação" step="any" required></div>
+            <div class="form-group"><label for="num_dias_chuva">Choveu (Sim (1)/Não (0))</label><input type="number" id="num_dias_chuva" placeholder="Ex.: 0" name="num_dias_chuva" step="any" required value_max="1" value_min="0"></div>
+            <div class="form-group"><label for="Precipitacao">Precipitação (Milímitros (mm)) </label><input type="number" id="Precipitacao" placeholder="Ex.:45.5" name="Precipitacao" step="any" required></div>
+            <div class="form-group"><label for="Pressao_atmosferica">Pressão atmosférica (hPa)</label><input type="number" id="Pressao_atmosferica" placeholder="Ex.:1.012" name="Pressao_atmosferica" step="any" required></div>
+            <div class="form-group"><label for="Radiacao_solar">Radiação solar (MJ/m²)</label><input type="number" id="Radiacao_solar" placeholder="Ex.:2.5" name="Radiacao_solar" step="any" required></div>
+            <div class="form-group"><label for="Temperatura_ar">Temperatura do ar (Graus Celsius (°C)) </label><input type="number" id="Temperatura_ar" placeholder="Ex.:25.5" name="Temperatura_ar" step="any" required></div>
+            <div class="form-group"><label for="Temperatura_ponto_orvalho">Temperatura de ponto de orvalho (Graus Celsius (°C)) </label><input type="number" id="Temperatura_ponto_orvalho" placeholder="Ex.:15" name="Temperatura_ponto_orvalho" step="any" required></div>
+            <div class="form-group"><label for="Temperatura_maxima">Temperatura máxima (Graus Celsius (°C))</label><input type="number" id="Temperatura_maxima" placeholder="Ex.:30" name="Temperatura_maxima" step="any" required></div>
+            <div class="form-group"><label for="Temperatura_minima">Temperatura mínima (Graus Celsius (°C))</label><input type="number" id="Temperatura_minima" placeholder="Ex.:-2" name="Temperatura_minima" step="any" required></div>
+            <div class="form-group"><label for="Umidade_relativa">Umidade relativa (%)</label><input type="number" id="Umidade_relativa" placeholder="Ex.:0.85" name="Umidade_relativa" step="any" required value_max="1" value_min="0"></div>
+            <div class="form-group"><label for="Velocidade_vento">Velocidade do vento (m/s)</label><input type="number" id="Velocidade_vento" placeholder="Ex.:1.9" name="Velocidade_vento" step="any" required></div>
+            <div class="form-group"><label for="Velocidade_rajada">Velocidade de rajada (m/s)</label><input type="number" id="Velocidade_rajada" placeholder="Ex.:5" name="Velocidade_rajada" step="any" required></div>
           </fieldset>
 
           <fieldset>
